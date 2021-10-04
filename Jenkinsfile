@@ -10,6 +10,39 @@ pipeline{
     
     }
     
+    
+     stage('build image'){
+      steps {
+          sh 'docker build . -f Dockerfile -t ziadamr14/sprints_django_app:latest'
+        }
+     }
+    
+    
+     stage('push image'){
+            steps {
+                withCredentials([usernamePassword(credentialsId:"dockerhub",usernameVariable:"USERNAME",passwordVariable:"PASSWORD")]) {
+                    
+                    sh """
+                      docker login -u ${USERNAME} -p ${PASSWORD}
+                      docker push ziadamr14/sprints_django_app:latest
+                    """
+                }
+            }
+        }
+     stage('deploy'){
+            steps {
+                sh 'docker run -d -p 8000:8000 ziadamr14/sprints_django_app:latest'
+            }
+        }
+
+    
+    
+    
+    
+    
+    
+    }
+    
   }
 
 
