@@ -9,12 +9,14 @@ WORKDIR /simpleApp
 #Install required packages
 RUN pip3 install -r requirements.txt
 #Make migration for databaase
-RUN python3.6 manage.py makemigrations
+RUN python3 manage.py makemigrations
 #Apply migrations
-RUN python3.6 manage.py migrate
+RUN python3 manage.py migrate 
+
 
 
 EXPOSE 8000
 
 #Start Server
 CMD [ "python3","manage.py","runserver","0.0.0.0:8000" ]
+
