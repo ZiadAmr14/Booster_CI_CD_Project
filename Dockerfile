@@ -4,7 +4,7 @@ RUN apt-get update -qq
 #install python3.6
 RUN apt-get install -y python3.6 
 #install pip3
-RUN apt-get install -y python-pip3
+RUN apt-get install -y python3-pip3
 #Copy the source code of this app to the image
 COPY . /simpleApp
 #Adjust Work Directory
