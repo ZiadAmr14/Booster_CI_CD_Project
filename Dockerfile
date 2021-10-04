@@ -1,8 +1,7 @@
 FROM ubuntu:latest
 RUN apt-get update -qq
 
-#install pip3
-RUN apt-get install -y python3-pip3 -qq
+RUN apt-get install -y build-essential python3.6 python3-pip
 #Copy the source code of this app to the image
 COPY . /simpleApp
 #Adjust Work Directory
