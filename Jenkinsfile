@@ -33,6 +33,16 @@ pipeline{
             steps {
                 sh 'docker run -d -p 8000:8000 ziadamr14/sprints_django_app:latest'
             }
+           post {
+              success {
+                slackSend (color: '#00FF00', message: "SUCCESSFUL")
+             }
+
+              failure {
+                slackSend (color: '#FF0000', message: "FAILED")
+               
+             }
+    }
         }
 
     
@@ -40,16 +50,7 @@ pipeline{
      
     }
   
-    post {
-         success {
-                slackSend (color: '#00FF00', message: "SUCCESSFUL")
-          }
 
-         failure {
-                slackSend (color: '#FF0000', message: "FAILED")
-               
-            }
-    }
   
   
     
